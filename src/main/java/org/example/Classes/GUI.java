@@ -1,14 +1,16 @@
 package org.example.Classes;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GUI {
     static JFrame mainFrame = new JFrame();
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     public GUI() {
-        double screenWidth = screenSize.getWidth();
-        double screenHeight = screenSize.getHeight();
+        float screenWidth = (float) screenSize.getWidth();
+        float screenHeight = (float) screenSize.getHeight();
 
         int frameWidth = scaleSize(screenWidth);
         int frameHeight = scaleSize(screenHeight);
@@ -24,4 +26,12 @@ public class GUI {
     public static int scaleSize (double size){
         return (int) size / 3;
     }
-}
+
+    public static List<String> generateSymbols(){
+        List<String> symbols = new ArrayList<>();
+        for (int i = 0; i <= 9; i++){
+            symbols.add(String.valueOf(i));
+        }
+        return symbols;
+    }
+ }
