@@ -4,31 +4,54 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Class for managing User Interface elements.
+ */
 public class GUI {
     static JFrame mainFrame = new JFrame();
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+    /**
+     * The Constructor which sets the dimensions of the main frame.
+     */
     public GUI() {
-        float screenWidth = (float) screenSize.getWidth();
-        float screenHeight = (float) screenSize.getHeight();
-
-        int frameWidth = scaleSize(screenWidth);
-        int frameHeight = scaleSize(screenHeight);
-
-        mainFrame.setSize(frameWidth,frameHeight);
+        Dimension size = scaleSize();
+        System.out.println(size);
+        mainFrame.setSize(size);
     }
 
+    /**
+     * Builds the mainframe and inserts the elements that will comprise the interface.
+     */
     public void newWindow () {
         mainFrame.add(inputPanel());
-        mainFrame.pack();
         mainFrame.setLayout(null);
+        mainFrame.pack(); // something broken here
         mainFrame.setVisible(true);
+        System.out.println(mainFrame.getSize());
     }
 
-    public static int scaleSize (double size){
-        return (int) size / 3;
+    /**
+     * Calculates the size of the window based of screen size.
+     * @return the size of the window as a Dimension.
+     */
+    public static Dimension scaleSize (){
+        double screenWidth = screenSize.getWidth();
+        double screenHeight = screenSize.getHeight();
+
+        System.out.println("Screen size = " + screenWidth + "x" + screenHeight);
+
+        int width = (int) screenWidth / 2;
+        int height = (int) screenHeight / 2;
+
+        System.out.println("Window size = " + width + "x" + height);
+        return new Dimension(width, height);
     }
 
+    /**
+     * Creates the panel where all inputs will be.
+     * @return A JPanel containing all the inputs.
+     */
     public static JPanel inputPanel () {
         JPanel grid = new JPanel(new GridLayout(4, 5));
         List<JButton> buttons = generateButtons();
@@ -40,6 +63,10 @@ public class GUI {
         return grid;
     }
 
+    /**
+     * Creates a List of buttons to be used in the inputPanel.
+     * @return A list of JButtons.
+     */
     public static List<JButton> generateButtons(){
         List<String> symbols = new ArrayList<>();
         List<JButton> buttons = new ArrayList<>();
