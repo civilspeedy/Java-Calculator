@@ -1,6 +1,8 @@
 package org.example.Classes;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,18 +17,16 @@ public class GUI {
      * The Constructor which sets the dimensions of the main frame.
      */
     public GUI() {
-        Dimension size = scaleSize();
-        System.out.println(size);
-        mainFrame.setSize(size);
     }
 
     /**
      * Builds the mainframe and inserts the elements that will comprise the interface.
      */
     public void newWindow () {
-        mainFrame.add(inputPanel());
         mainFrame.setLayout(null);
-        mainFrame.pack(); // something broken here
+        mainFrame.setSize(scaleSize());
+        mainFrame.add(inputPanel());
+        mainFrame.setResizable(false);
         mainFrame.setVisible(true);
         System.out.println(mainFrame.getSize());
     }
@@ -38,11 +38,12 @@ public class GUI {
     public static Dimension scaleSize (){
         double screenWidth = screenSize.getWidth();
         double screenHeight = screenSize.getHeight();
+        int scaleFactor = 3;
 
         System.out.println("Screen size = " + screenWidth + "x" + screenHeight);
 
-        int width = (int) screenWidth / 2;
-        int height = (int) screenHeight / 2;
+        int width = (int) screenWidth / scaleFactor;
+        int height = (int) screenHeight / scaleFactor;
 
         System.out.println("Window size = " + width + "x" + height);
         return new Dimension(width, height);
@@ -80,7 +81,13 @@ public class GUI {
         for (String symbol : symbols){
             JButton button = new JButton(symbol);
             button.setSize(50, 50);
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    String action = e.getActionCommand();
+                }
+            });
             buttons.add(button);
+
         }
 
         return buttons;
