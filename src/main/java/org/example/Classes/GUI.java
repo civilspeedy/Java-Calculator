@@ -23,9 +23,9 @@ public class GUI {
      * Builds the mainframe and inserts the elements that will comprise the interface.
      */
     public void newWindow () {
-        mainFrame.setLayout(null);
+        mainFrame.setLayout(new GridLayout(4, 5));
         mainFrame.setSize(scaleSize());
-        mainFrame.add(inputPanel());
+        generateButtons();
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
         System.out.println(mainFrame.getSize());
@@ -50,27 +50,10 @@ public class GUI {
     }
 
     /**
-     * Creates the panel where all inputs will be.
-     * @return A JPanel containing all the inputs.
-     */
-    public static JPanel inputPanel () {
-        JPanel grid = new JPanel(new GridLayout(4, 5));
-        List<JButton> buttons = generateButtons();
-
-        for (JButton button : buttons){
-            grid.add(button);
-        }
-
-        return grid;
-    }
-
-    /**
      * Creates a List of buttons to be used in the inputPanel.
-     * @return A list of JButtons.
      */
-    public static List<JButton> generateButtons(){
+    public static void generateButtons(){
         List<String> symbols = new ArrayList<>();
-        List<JButton> buttons = new ArrayList<>();
 
         for (int i = 0; i <= 9; i++){
             symbols.add(String.valueOf(i));
@@ -84,13 +67,12 @@ public class GUI {
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String action = e.getActionCommand();
+                    System.out.println("This button was pressed " + action);
                 }
             });
-            buttons.add(button);
-
+            mainFrame.add(button);
         }
 
-        return buttons;
     }
 }
 
