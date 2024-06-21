@@ -69,6 +69,11 @@ public class GUI {
         display.setText(item);
     }
 
+    public void updateDisplay(int item){
+        String stringItem = String.valueOf(item);
+        display.setText(stringItem);
+    }
+
     /**
      * Creates a List of buttons to be used in the inputPanel.
      */
