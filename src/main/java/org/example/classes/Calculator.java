@@ -1,4 +1,4 @@
-package org.example.Classes;
+package org.example.classes;
 
 public class Calculator {
     public float basic (float val_1, float val_2, String operation){
