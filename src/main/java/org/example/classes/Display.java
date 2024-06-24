@@ -1,6 +1,7 @@
 package org.example.classes;
 
 import javax.swing.JLabel;
+import java.util.Arrays;
 
 public class Display {
     String[] wholeValue;
@@ -12,8 +13,6 @@ public class Display {
         valueLabel = new JLabel(String.valueOf(value));
         wholeValue = new String[]{"0", "0", "0", "0", "0","0", "0", "0"};
         fractionalValue = new String[]{"0", "0", "0", "0", "0","0", "0", "0"};
-        pushWholeNumber(1);
-        pushWholeNumber(1); // is in fractvalue for some reason
         matchValue();
         System.out.println(value);
     }
@@ -43,9 +42,10 @@ public class Display {
     }
 
     public void pushWholeNumber(int number){
-        int length = wholeValue.length - 1;
+        int length = wholeValue.length - 2;
         for (int i = length; i > 0; i--){
-            wholeValue[i - 1] = wholeValue[i];
+            System.out.println(i);
+            wholeValue[i + 1] = wholeValue[i];
         }
 
         wholeValue[length] = String.valueOf(number);
