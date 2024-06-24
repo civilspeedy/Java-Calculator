@@ -83,7 +83,7 @@ public class GUI {
                     try {
                         // needs to be set up so that only int can come through
                         float actionAsFloat = Float.parseFloat(action);
-                        display.updateDisplayValue(actionAsFloat);
+
 
                     } catch (Exception err){
                         switch (action) {
